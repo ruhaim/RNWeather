@@ -11,6 +11,9 @@
         "fetch": true
     },
     "rules":{
+        "prefer-const":"off",
+        "no-mixed-operators": "off",
+        "import/first":"off",
         "import/no-named-as-default-member":"off",
         "react/prefer-stateless-function":"off",
         "react/prop-types":"off",
