@@ -8,7 +8,28 @@ import {
   StyleSheet,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    backgroundColor: 'white',
+  },
+  clearIcon: {
+    marginLeft: 5,
+  },
+  textInput: {
+    flex: 1,
+    height: 40,
+    marginLeft: 10,
+  },
+  activityIndicator: {
+    marginLeft: 5,
+    marginRight: 5,
+  },
+});
 
 class ProgressiveInput extends Component {
   static propTypes = {
@@ -26,6 +47,7 @@ class ProgressiveInput extends Component {
     onFocus: PropTypes.func,
     onInputCleared: PropTypes.func,
     underlineColorAndroid: PropTypes.string,
+    editable: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -48,6 +70,7 @@ class ProgressiveInput extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ value: nextProps.value });
   }
+  _onBlur = () => this.setState({ showClearButton: false });
 
   clearInput() {
     this.setState({ value: '', focus: false });
@@ -60,36 +83,6 @@ class ProgressiveInput extends Component {
     return this.input.isFocused();
   }
 
-  render() {
-    return (
-      <View style={[styles.container, this.props.style]}>
-        {this._renderClearButton()}
-        <TextInput
-          ref={input => (this.input = input)}
-          style={[styles.textInput, this.props.textInputStyle]}
-          focus={this.state.focus}
-          value={this.state.value}
-          editable={this.props.editable}
-          onFocus={this._onFocus}
-          placeholder={this.props.placeholder}
-          onChangeText={this._onChangeText}
-          selectTextOnFocus={this.props.selectTextOnFocus}
-          onBlur={this._onBlur}
-          autoCorrect={this.props.autoCorrect}
-          keyboardType={this.props.keyboardType}
-          multiline={this.props.multiline}
-          placeholderTextColor={this.props.placeholderTextColor}
-          returnKeyType={this.props.returnKeyType}
-          autoCapitalize={this.props.autoCapitalize}
-          maxLength={this.props.maxLength}
-          onEndEditing={this.props.onEndEditing}
-          onChange={this.props.onChange}
-          underlineColorAndroid={this.props.underlineColorAndroid}
-        />
-        {this._renderActivityIndicator()}
-      </View>
-    );
-  }
 
   _renderActivityIndicator = () => {
     const size = this.props.isLoading ? {} : { width: 0, height: 0 };
@@ -118,6 +111,7 @@ class ProgressiveInput extends Component {
         </TouchableOpacity>
       );
     }
+    return null;
   };
 
   _onFocus = () => {
@@ -141,29 +135,37 @@ class ProgressiveInput extends Component {
     this.setState({ showClearButton });
   };
 
-  _onBlur = () => this.setState({ showClearButton: false });
+  render() {
+    return (
+      <View style={[styles.container, this.props.style]}>
+        {this._renderClearButton()}
+        <TextInput
+          ref={(input) => { (this.input = input); }}
+          style={[styles.textInput, this.props.textInputStyle]}
+          focus={this.state.focus}
+          value={this.state.value}
+          editable={this.props.editable}
+          onFocus={this._onFocus}
+          placeholder={this.props.placeholder}
+          onChangeText={this._onChangeText}
+          selectTextOnFocus={this.props.selectTextOnFocus}
+          onBlur={this._onBlur}
+          autoCorrect={this.props.autoCorrect}
+          keyboardType={this.props.keyboardType}
+          multiline={this.props.multiline}
+          placeholderTextColor={this.props.placeholderTextColor}
+          returnKeyType={this.props.returnKeyType}
+          autoCapitalize={this.props.autoCapitalize}
+          maxLength={this.props.maxLength}
+          onEndEditing={this.props.onEndEditing}
+          onChange={this.props.onChange}
+          underlineColorAndroid={this.props.underlineColorAndroid}
+        />
+        {this._renderActivityIndicator()}
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    backgroundColor: 'white',
-  },
-  clearIcon: {
-    marginLeft: 5,
-  },
-  textInput: {
-    flex: 1,
-    height: 40,
-    marginLeft: 10,
-  },
-  activityIndicator: {
-    marginLeft: 5,
-    marginRight: 5,
-  },
-});
 
 export default ProgressiveInput;

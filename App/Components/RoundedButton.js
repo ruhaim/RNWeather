@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
 import styles from './Styles/RoundedButtonStyles';
-import {ExamplesRegistry} from '../Services/ExamplesRegistry';
+import { ExamplesRegistry } from '../Services/ExamplesRegistry';
 
 // Note that this file (App/Components/RoundedButton) needs to be
 // imported in your app somewhere, otherwise your component won't be
