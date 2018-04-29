@@ -83,7 +83,6 @@ class ProgressiveInput extends Component {
     return this.input.isFocused();
   }
 
-
   _renderActivityIndicator = () => {
     const size = this.props.isLoading ? {} : { width: 0, height: 0 };
     return (
@@ -140,7 +139,9 @@ class ProgressiveInput extends Component {
       <View style={[styles.container, this.props.style]}>
         {this._renderClearButton()}
         <TextInput
-          ref={(input) => { (this.input = input); }}
+          ref={(input) => {
+            this.input = input;
+          }}
           style={[styles.textInput, this.props.textInputStyle]}
           focus={this.state.focus}
           value={this.state.value}
@@ -166,6 +167,5 @@ class ProgressiveInput extends Component {
     );
   }
 }
-
 
 export default ProgressiveInput;

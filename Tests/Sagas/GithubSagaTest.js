@@ -4,7 +4,6 @@ import FixtureAPI from '../../App/Services/FixtureApi';
 import { getUserAvatar } from '../../App/Sagas/GithubSagas';
 import GithubActions from '../../App/Redux/GithubRedux';
 
-
 const stepper = fn => mock => fn.next(mock).value;
 
 test('first calls API', () => {

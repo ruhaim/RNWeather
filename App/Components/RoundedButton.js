@@ -10,11 +10,12 @@ import { ExamplesRegistry } from '../Services/ExamplesRegistry';
 
 // Ignore in coverage report
 /* istanbul ignore next */
-ExamplesRegistry.addComponentExample('Rounded Button', () =>
-  (<RoundedButton
+ExamplesRegistry.addComponentExample('Rounded Button', () => (
+  <RoundedButton
     text="real buttons have curves"
     onPress={() => window.alert('Rounded Button Pressed!')}
-  />));
+  />
+));
 
 export default class RoundedButton extends Component {
   static propTypes = {
@@ -22,7 +23,7 @@ export default class RoundedButton extends Component {
     text: PropTypes.string,
     children: PropTypes.string,
     navigator: PropTypes.object,
-  }
+  };
 
   getText() {
     const buttonText = this.props.text || this.props.children || '';

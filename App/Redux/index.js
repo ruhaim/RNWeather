@@ -10,8 +10,11 @@ export const reducers = combineReducers({
 });
 
 export default () => {
-  const { store, sagasManagerConst, sagaMiddleware } = configureStore(reducers, rootSaga);
-  let sagasManager = sagasManagerConst;
+  let { store, sagasManager, sagaMiddleware } = configureStore(
+    reducers,
+    rootSaga,
+  );
+
   if (module.hot) {
     module.hot.accept(() => {
       const nextRootReducer = require('./').reducers;

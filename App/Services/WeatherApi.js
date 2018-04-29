@@ -35,8 +35,10 @@ const create = (baseURL = 'https://www.metaweather.com/api/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getSearchResultForString = searchString => api.get('location/search', { query: searchString });
-  const getSearchResultForLattLong = (lat, long) => api.get('location/search', { lattlong: `${lat},${long}` });
+  const getSearchResultForString = searchString =>
+    api.get('location/search', { query: searchString });
+  const getSearchResultForLattLong = (lat, long) =>
+    api.get('location/search', { lattlong: `${lat},${long}` });
   const getWeatherResultForWoeid = woeid => api.get(`location/search/${woeid}`);
 
   // ------

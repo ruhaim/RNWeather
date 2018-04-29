@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import StartupActions from '../Redux/StartupRedux';
 import ReduxNavigation from '../Navigation/ReduxNavigation';
+import StartupActions from '../Redux/StartupRedux';
 
 // Styles
 import styles from './Styles/RootContainerStyles';

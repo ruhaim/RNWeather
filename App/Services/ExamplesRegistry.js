@@ -8,11 +8,15 @@ const globalComponentExamplesRegistry = [];
 const globalPluginExamplesRegistry = [];
 
 export const addComponentExample = (title, usage = () => {}) => {
-  if (DebugConfig.includeExamples) { globalComponentExamplesRegistry.push({ title, usage }); }
+  if (DebugConfig.includeExamples) {
+    globalComponentExamplesRegistry.push({ title, usage });
+  }
 };
 
 export const addPluginExample = (title, usage = () => {}) => {
-  if (DebugConfig.includeExamples) { globalPluginExamplesRegistry.push({ title, usage }); }
+  if (DebugConfig.includeExamples) {
+    globalPluginExamplesRegistry.push({ title, usage });
+  }
 };
 
 const renderComponentExample = example => (
@@ -33,9 +37,11 @@ const renderPluginExample = example => (
   </View>
 );
 
-export const renderComponentExamples = () => R.map(renderComponentExample, globalComponentExamplesRegistry);
+export const renderComponentExamples = () =>
+  R.map(renderComponentExample, globalComponentExamplesRegistry);
 
-export const renderPluginExamples = () => R.map(renderPluginExample, globalPluginExamplesRegistry);
+export const renderPluginExamples = () =>
+  R.map(renderPluginExample, globalPluginExamplesRegistry);
 
 // Default for readability
 export default {

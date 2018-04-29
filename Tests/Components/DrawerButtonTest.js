@@ -5,7 +5,9 @@ import renderer from 'react-test-renderer';
 import DrawerButton from '../../App/Components/DrawerButton';
 
 test('DrawerButton component renders correctly', () => {
-  const tree = renderer.create(<DrawerButton onPress={() => {}} text="hi" />).toJSON();
+  const tree = renderer
+    .create(<DrawerButton onPress={() => {}} text="hi" />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
