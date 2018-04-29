@@ -1,5 +1,5 @@
 {
-  "name": "rn-weather",
+  "name": "rnweather",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -30,7 +30,8 @@
     "eslint:fix": "eslint . --fix",
     "prettier": "prettier --write **/*.js",
     "format:code": "yarn run prettier && yarn run eslint:fix",
-    "format:json": "prettier --write --parser json **/*.json"
+    "format:json": "prettier --write --parser json **/*.json",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "apisauce": "^0.14.2",
@@ -72,6 +73,7 @@
     "husky": "^0.14.3",
     "ignite-ir-boilerplate-andross": "^2.3.3",
     "jest": "22.4.3",
+    "lint-staged": "^7.0.5",
     "mockery": "^2.1.0",
     "prettier": "1.12.1",
     "ramda": "^0.25.0",
@@ -80,6 +82,9 @@
     "reactotron-react-native": "^2.0.0-alpha.3",
     "reactotron-redux": "^2.0.0-alpha.3",
     "reactotron-redux-saga": "^2.0.0-alpha.3"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "eslint . --fix"]
   },
   "jest": {
     "testMatch": ["<rootDir>/Tests/**/*.js", "**/?(*.)(spec|test).js?(x)"],
