@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProgressiveInput from './ProgressiveInput';
+import ProgressiveInput from 'react-native-progressive-input';
 
 export default class LocationProgessiveInput extends Component {
   constructor(props) {
