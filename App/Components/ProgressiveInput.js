@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // 15.6.0
-import { TextInput, View, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  TextInput,
+  View,
+  ActivityIndicator,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const styles = StyleSheet.create({
@@ -82,7 +88,11 @@ class ProgressiveInput extends Component {
     return (
       <ActivityIndicator
         animating={this.props.isLoading}
-        style={[styles.activityIndicator, this.props.activityIndicatorStyle, size]}
+        style={[
+          styles.activityIndicator,
+          this.props.activityIndicatorStyle,
+          size,
+        ]}
       />
     );
   };
