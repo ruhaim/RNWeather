@@ -11,11 +11,14 @@
     "fetch": true
   },
   "rules": {
+    "class-methods-use-this": "off",
+    "linebreak-style": "off",
     "prefer-const": "off",
     "no-mixed-operators": "off",
     "import/first": "off",
     "import/no-named-as-default-member": "off",
     "react/prefer-stateless-function": "off",
+    "react/no-unused-state": "off",
     "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/forbid-prop-types": "off",

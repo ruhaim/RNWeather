@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import ProgressiveInput from './ProgressiveInput';
+import { View, ListView, TouchableOpacity, Text } from 'react-native';
+import styles from './Styles/LocationProgessiveInputStyles';
+
+const ds = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1.id !== r2.id,
+});
 
 export default class LocationProgessiveInput extends Component {
   constructor(props) {
@@ -8,6 +14,7 @@ export default class LocationProgessiveInput extends Component {
     this.state = {
       value: '',
       isLoading: false,
+      dataSource: ds.cloneWithRows([]),
     };
   }
 
@@ -17,8 +24,20 @@ export default class LocationProgessiveInput extends Component {
     fetch(`https://www.metaweather.com/api/location/search/?query=${text}`).then((result) => {
       // Process list of suggestions
 
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false, dataSource: ds.cloneWithRows(result) });
     });
+  }
+
+  renderRow(prediction) {
+    return (
+      <TouchableOpacity onPress={() => this.onListItemClicked(prediction)} style={styles.listItem}>
+        <Text>{prediction.description}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  renderSeparator() {
+    return <View style={styles.listItemSeparator} />;
   }
 
   render() {
