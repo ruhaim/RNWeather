@@ -30,7 +30,10 @@ export default class LocationProgessiveInput extends Component {
 
   renderRow(prediction) {
     return (
-      <TouchableOpacity onPress={() => this.onListItemClicked(prediction)} style={styles.listItem}>
+      <TouchableOpacity
+        onPress={() => this.onListItemClicked(prediction)}
+        style={styles.listItem}
+      >
         <Text>{prediction.description}</Text>
       </TouchableOpacity>
     );
