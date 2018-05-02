@@ -73,7 +73,7 @@ class ProgressiveInput extends Component {
   _onBlur = () => this.setState({ showClearButton: false });
 
   clearInput() {
-    this.setState({ value: '', focus: false });
+    this.setState({ value: '', focus: false, showClearButton: false });
     if (this.props.onInputCleared) {
       this.props.onInputCleared();
     }

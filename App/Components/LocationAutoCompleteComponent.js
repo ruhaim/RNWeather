@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProgressiveInput from './ProgressiveInput';
 import { View, ListView, TouchableOpacity, Text } from 'react-native';
-import styles from './Styles/LocationProgessiveInputStyles';
+import styles from './Styles/LocationAutoCompleteComponentStyles';
 
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.id !== r2.id,
@@ -30,10 +30,7 @@ export default class LocationProgessiveInput extends Component {
 
   renderRow(prediction) {
     return (
-      <TouchableOpacity
-        onPress={() => this.onListItemClicked(prediction)}
-        style={styles.listItem}
-      >
+      <TouchableOpacity onPress={() => this.onListItemClicked(prediction)} style={styles.listItem}>
         <Text>{prediction.description}</Text>
       </TouchableOpacity>
     );
@@ -45,13 +42,24 @@ export default class LocationProgessiveInput extends Component {
 
   render() {
     return (
-      <ProgressiveInput
-        value={this.state.value}
-        isLoading={this.state.isLoading}
-        onChangeText={(event) => {
-          this._onChangeText(event);
-        }}
-      />
+      <View style={styles.container}>
+        <ProgressiveInput
+          value={this.state.value}
+          style={styles.progressiveInput}
+          isLoading={this.state.isLoading}
+          onChangeText={this.searchLocation}
+          onInputCleared={this.onInputCleared}
+        />
+        <View style={styles.listViewContainer}>
+          <ListView
+            enableEmptySections
+            style={styles.listView}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            renderSeparator={this.renderSeparator}
+          />
+        </View>
+      </View>
     );
   }
 }
