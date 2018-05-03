@@ -65,7 +65,9 @@ export default class GPSLocatorButton extends Component {
 
   render() {
     return (
-      <View style={{ alignItems: 'center', paddingTop: 10, paddingHorizontal: 10 }}>
+      <View
+        style={{ alignItems: 'center', paddingTop: 10, paddingHorizontal: 10 }}
+      >
         <Text>Or</Text>
         <Button
           disabled={this.state.isLocating}
@@ -73,7 +75,9 @@ export default class GPSLocatorButton extends Component {
           icon={{ name: 'md-locate', type: 'ionicon' }}
           title="Determine cities near you (Requires GPS)"
         />
-        {this.state.isLocating ? <Text>Hold on tight, We are fetching Location...</Text> : null}
+        {this.state.isLocating ? (
+          <Text>Hold on tight, We are fetching Location...</Text>
+        ) : null}
         {this.renderErrorText()}
       </View>
     );

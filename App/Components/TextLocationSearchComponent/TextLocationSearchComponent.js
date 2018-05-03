@@ -63,9 +63,18 @@ export default class TextLocationSearchComponent extends Component {
   }
 
   renderFetchErrorMessage = () => (
-    <View style={{ alignSelf: 'center', flexDirection: 'row', paddingHorizontal: 10 }}>
+    <View
+      style={{
+        alignSelf: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+      }}
+    >
       <Icon name="md-alert" type="ionicon" size={20} />
-      <Text>Error fetching matching entries, check your network connection and try again</Text>
+      <Text>
+        Error fetching matching entries, check your network connection and try
+        again
+      </Text>
     </View>
   );
 

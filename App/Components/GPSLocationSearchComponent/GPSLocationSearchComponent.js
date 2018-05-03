@@ -76,9 +76,18 @@ export default class GPSLocationSearchComponent extends Component {
     </View>
   );
   renderFetchErrorMessage = () => (
-    <View style={{ alignSelf: 'center', flexDirection: 'row', paddingHorizontal: 10 }}>
+    <View
+      style={{
+        alignSelf: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+      }}
+    >
       <Icon name="md-alert" type="ionicon" size={20} />
-      <Text>Error fetching nearby cities, check your network connection and try again</Text>
+      <Text>
+        Error fetching nearby cities, check your network connection and try
+        again
+      </Text>
     </View>
   );
 
