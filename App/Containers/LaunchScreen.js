@@ -5,6 +5,8 @@ import { Images } from '../Themes';
 import ProgressiveInput from '../Components/ProgressiveInput';
 import WeatherApi from '../Services/WeatherApi';
 
+import { List, ListItem } from 'react-native-elements';
+
 // Styles
 import styles from './Styles/LaunchScreenStyles';
 
@@ -61,11 +63,20 @@ export default class LaunchScreen extends Component {
       }
     }, 500);
   }
-  renderRow = item => <Text style={styles.titleText}>{item.item.title}</Text>;
+  renderRow = (item) => {
+    console.log('dfs');
+    return (
+      <ListItem>
+        title={`${item.item.title}`}
+        subtitle={'khgjgh hgf'}
+        leftIcon={{ name: 'md-pin' }}
+      </ListItem>
+    );
+  };
 
   render() {
     return (
-      <View style={([{ paddingTop: 22 }], styles.mainContainer)}>
+      <View style={styles.mainContainer}>
         <Text>Type in a name of a City</Text>
         <ProgressiveInput
           style={styles.progressiveInput}
@@ -74,18 +85,13 @@ export default class LaunchScreen extends Component {
           onChangeText={this.onChangeText}
           onInputCleared={this.onInputCleared}
         />
-        <FlatList
-          style={[
-            {
-              flex: 1,
-              backgroundColor: '#f0f0f0',
-            },
-            styles.flatlist,
-          ]}
-          data={this.state.result}
-          renderItem={this.renderRow}
-          keyExtractor={item => String(item.item.woeid)}
-        />
+        <List>
+          <FlatList
+            data={this.state.result}
+            renderItem={this.renderRow}
+            keyExtractor={item => String(item.woeid)}
+          />
+        </List>
       </View>
     );
   }
