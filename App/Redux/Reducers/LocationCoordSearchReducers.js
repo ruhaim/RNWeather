@@ -1,19 +1,20 @@
 import { createReducer } from "reduxsauce";
 import Immutable from "seamless-immutable";
-import { LocationTextSearchTypes } from "../Actions/LocationTextSearchActions";
+import { LocationCoordSearchTypes } from "../Actions/LocationCoordSearchActions";
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
-  searchText: null,
-  result: require("../../Fixtures/searchResultLatLong.json"),
+  coords: null,
+  result: null,
   error: null,
   isFetching: false
 });
 
 /* ------------- Reducers ------------- */
 
-export const request = (state, { searchText }) =>
-  state.merge({ isFetching: true, searchText });
+export const request = (state, { coords }) =>
+  state.merge({ isFetching: true, coords });
+export const gpsRequest = state => state.merge({ isFetching: true });
 
 export const success = (state, { locationSearchResults }) =>
   state.merge({
@@ -28,7 +29,8 @@ export const failure = (state, { locationSearchError }) =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [LocationTextSearchTypes.SEARCH_LOCATION_REQUEST]: request,
-  [LocationTextSearchTypes.SEARCH_LOCATION_SUCESS]: success,
-  [LocationTextSearchTypes.SEARCH_LOCATION_FAIL]: failure
+  [LocationCoordSearchTypes.SEARCH_NEARBY_LOCATIONS_WITH_GPS]: gpsRequest,
+  [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_REQUEST]: request,
+  [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_SUCESS]: success,
+  [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_FAIL]: failure
 });

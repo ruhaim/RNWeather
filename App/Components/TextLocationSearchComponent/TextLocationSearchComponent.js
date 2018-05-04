@@ -1,73 +1,43 @@
-import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import React, { Component } from "react";
+import { View, FlatList } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withNavigation } from "react-navigation";
 
-import WeatherApi from '../../Services/WeatherApi';
+import WeatherApi from "../../Services/WeatherApi";
 
-import { Text, List, ListItem, SearchBar, Button } from 'react-native-elements';
-import GPSLocationSearchComponent from '../GPSLocationSearchComponent/GPSLocationSearchComponent';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Highlighter from 'react-native-highlight-words';
+import { Text, List, ListItem, SearchBar, Button } from "react-native-elements";
+import LocationTextSearchActions from "../../Redux/Actions/LocationTextSearchActions";
 
-export default class TextLocationSearchComponent extends Component {
+import CityWeatherActions from "../../Redux/Actions/CityWeatherActions";
+
+import LocationListItemRenderer from "../LocationSearch/LocationListItemRenderer";
+
+import Icon from "react-native-vector-icons/Ionicons";
+import Highlighter from "react-native-highlight-words";
+
+class TextLocationSearchComponent extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      locationSearch: { ...nextProps.locationSearch }
+    };
+  }
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchText: null,
-      result: null,
-      error: null,
-      fetching: false,
-    };
-    this.api = WeatherApi.create();
-    this.fetchTimer = null;
+    this.state = {};
   }
 
-  onChangeText = (searchText) => {
-    this.makeRemoteRequest(searchText);
+  onChangeText = searchText => {
+    this.props.searchLocationRequest(searchText);
   };
   onInputCleared = () => {};
-
-  async makeRemoteRequest(searchText) {
-    this.setState({
-      ...this.state,
-      searchText,
-      result: null,
-      fetching: true,
-      error: null,
-    });
-    if (this.fetchTimer) {
-      clearTimeout(this.fetchTimer);
-    }
-    this.fetchTimer = setTimeout(async () => {
-      try {
-        let response = await this.api.getSearchResultForString(searchText);
-        if (response.ok === true) {
-          this.setState({
-            ...this.state,
-            result: response.data,
-            fetching: false,
-            error: null,
-          });
-        } else {
-          throw new Error(response.problem);
-        }
-      } catch (error) {
-        this.setState({
-          ...this.state,
-          result: null,
-          fetching: false,
-          error,
-        });
-      }
-    }, 500);
-  }
-
   renderFetchErrorMessage = () => (
     <View
       style={{
-        alignSelf: 'center',
-        flexDirection: 'row',
-        paddingHorizontal: 10,
+        alignSelf: "center",
+        flexDirection: "row",
+        paddingHorizontal: 10
       }}
     >
       <Icon name="md-alert" type="ionicon" size={20} />
@@ -79,21 +49,59 @@ export default class TextLocationSearchComponent extends Component {
   );
 
   render() {
+    const { searchText, isFetching, error, result } = this.state.locationSearch;
     return (
       <View>
         <Text h2>Search a city</Text>
         <SearchBar
           lightTheme
-          value={this.state.searchText}
-          clearIcon={this.state.searchText ? true : null}
-          showLoadingIcon={this.state.fetching}
+          value={searchText}
+          clearIcon={searchText ? true : null}
+          showLoadingIcon={isFetching}
           onChangeText={this.onChangeText}
           onClearText={this.onInputCleared}
           placeholder="Try London or Chennai"
           blurOnSubmit
         />
-        {this.state.error ? this.renderFetchErrorMessage() : null}
+        {error ? this.renderFetchErrorMessage() : null}
+        <List
+          containerStyle={{
+            borderTopWidth: 0,
+            paddingTop: 0,
+            marginTop: 0,
+            backgroundColor: "transparent"
+          }}
+        >
+          <FlatList
+            data={result}
+            renderItem={item => (
+              <LocationListItemRenderer
+                item={item}
+                searchText={searchText}
+                getWeatherByWoeid={this.props.getWeatherByWoeid}
+                navigation={this.props.navigation}
+              />
+            )}
+            keyExtractor={item => String(item.woeid)}
+          />
+        </List>
       </View>
     );
   }
 }
+const mapStateToProps = state => ({
+  locationSearch: state.locationSearch,
+  nav: state
+});
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      searchLocationRequest: LocationTextSearchActions.searchLocationRequest,
+      getWeatherByWoeid: CityWeatherActions.getWeatherByWoeid
+    },
+
+    dispatch
+  );
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withNavigation(TextLocationSearchComponent)
+);
