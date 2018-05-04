@@ -1,13 +1,13 @@
-import { createReducer } from "reduxsauce";
-import Immutable from "seamless-immutable";
-import { LocationCoordSearchTypes } from "../Actions/LocationCoordSearchActions";
+import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import { LocationCoordSearchTypes } from '../Actions/LocationCoordSearchActions';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
   coords: null,
   result: null,
   error: null,
-  isFetching: false
+  isFetching: false,
 });
 
 /* ------------- Reducers ------------- */
@@ -20,7 +20,7 @@ export const success = (state, { locationSearchResults }) =>
   state.merge({
     isFetching: false,
     error: null,
-    result: locationSearchResults
+    result: locationSearchResults,
   });
 
 export const failure = (state, { locationSearchError }) =>
@@ -32,5 +32,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [LocationCoordSearchTypes.SEARCH_NEARBY_LOCATIONS_WITH_GPS]: gpsRequest,
   [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_REQUEST]: request,
   [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_SUCESS]: success,
-  [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_FAIL]: failure
+  [LocationCoordSearchTypes.SEARCH_COORD_LOCATION_FAIL]: failure,
 });

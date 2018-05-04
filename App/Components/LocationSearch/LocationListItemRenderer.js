@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { ListItem } from "react-native-elements";
+import { ListItem } from 'react-native-elements';
 
-import Icon from "react-native-vector-icons/Ionicons";
-import Highlighter from "react-native-highlight-words";
+import Icon from 'react-native-vector-icons/Ionicons';
+import Highlighter from 'react-native-highlight-words';
 
 class LocationListItemRenderer extends Component {
   constructor(props) {
@@ -13,13 +13,13 @@ class LocationListItemRenderer extends Component {
       searchText: null,
       result: null,
       error: null,
-      fetching: false
+      fetching: false,
     };
   }
   onPress = () => {
     this.props.getWeatherByWoeid(this.props.item);
-    this.props.navigation.navigate("WeatherDetailScreen", {
-      item: this.props.item
+    this.props.navigation.navigate('WeatherDetailScreen', {
+      item: this.props.item,
     });
   };
   // item, searchText
@@ -31,7 +31,7 @@ class LocationListItemRenderer extends Component {
         title={
           <Highlighter
             style={{ paddingLeft: 5 }}
-            highlightStyle={{ fontWeight: "bold" }}
+            highlightStyle={{ fontWeight: 'bold' }}
             searchWords={[searchText]}
             textToHighlight={item.item.title}
           />

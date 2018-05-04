@@ -1,9 +1,9 @@
 // a library to wrap and simplify api calls
 
-import apisauce from "apisauce";
+import apisauce from 'apisauce';
 // our "constructor"
 
-const create = (baseURL = "https://www.metaweather.com/api/") => {
+const create = (baseURL = 'https://www.metaweather.com/api/') => {
   // ------
   // STEP 1
   // ------
@@ -15,10 +15,10 @@ const create = (baseURL = "https://www.metaweather.com/api/") => {
     baseURL,
     // here are some default headers
     headers: {
-      "Cache-Control": "no-cache"
+      'Cache-Control': 'no-cache',
     },
     // 10 second timeout...
-    timeout: 10000
+    timeout: 10000,
   });
 
   // ------
@@ -36,9 +36,9 @@ const create = (baseURL = "https://www.metaweather.com/api/") => {
   // way at this level.
   //
   const getSearchResultForString = searchString =>
-    api.get("location/search", { query: searchString });
+    api.get('location/search', { query: searchString });
   const getSearchResultForLattLong = (lat, long) =>
-    api.get("location/search", { lattlong: `${lat},${long}` });
+    api.get('location/search', { lattlong: `${lat},${long}` });
   const getWeatherResultForWoeid = woeid => api.get(`location/${woeid}`);
 
   // ------
@@ -57,11 +57,11 @@ const create = (baseURL = "https://www.metaweather.com/api/") => {
     // a list of the API functions from step 2
     getSearchResultForString,
     getSearchResultForLattLong,
-    getWeatherResultForWoeid
+    getWeatherResultForWoeid,
   };
 };
 
 // let's return back our create method as the default.
 export default {
-  create
+  create,
 };

@@ -1,12 +1,12 @@
-import { createReducer } from "reduxsauce";
-import Immutable from "seamless-immutable";
-import { GPSLocationTypes } from "../Actions/GPSLocationActions";
+import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import { GPSLocationTypes } from '../Actions/GPSLocationActions';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
   gpsResult: null,
   gpsError: null,
-  isFetching: false
+  isFetching: false,
 });
 
 /* ------------- Reducers ------------- */
@@ -17,7 +17,7 @@ export const success = (state, { gpsResult }) =>
   state.merge({ isFetching: false, gpsError: null, gpsResult });
 
 export const failure = (state, { gpsError }) => {
-  console.log("error", gpsError);
+  console.log('error', gpsError);
   return state.merge({ isFetching: false, gpsError });
 };
 
@@ -26,5 +26,5 @@ export const failure = (state, { gpsError }) => {
 export const reducer = createReducer(INITIAL_STATE, {
   [GPSLocationTypes.GET_GPS_LOCATION]: request,
   [GPSLocationTypes.GPS_LOCATION_SUCCESS]: success,
-  [GPSLocationTypes.GPS_LOCATION_FAIL]: failure
+  [GPSLocationTypes.GPS_LOCATION_FAIL]: failure,
 });

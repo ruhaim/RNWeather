@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { ActivityIndicator, View, FlatList } from "react-native";
+import React, { Component } from 'react';
+import { ActivityIndicator, View, FlatList } from 'react-native';
 
-import { Text, List, ListItem, SearchBar, Button } from "react-native-elements";
-import GPSLocatorButton from "./GPSLocatorButton/GPSLocatorButton";
-import Icon from "react-native-vector-icons/Ionicons";
-import Highlighter from "react-native-highlight-words";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { Text, List, ListItem, SearchBar, Button } from 'react-native-elements';
+import GPSLocatorButton from './GPSLocatorButton/GPSLocatorButton';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Highlighter from 'react-native-highlight-words';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import GPSLocationActions from "../../Redux/Actions/GPSLocationActions";
-import LocationCoordSearchActions from "../../Redux/Actions/LocationCoordSearchActions";
+import GPSLocationActions from '../../Redux/Actions/GPSLocationActions';
+import LocationCoordSearchActions from '../../Redux/Actions/LocationCoordSearchActions';
 
 class GPSLocationSearchComponent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
       locationCoordSearch: { ...nextProps.locationCoordSearch },
-      gpsLocation: { ...nextProps.gpsLocation }
+      gpsLocation: { ...nextProps.gpsLocation },
     };
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      isFetching: false
+      isFetching: false,
     };
   }
 
@@ -31,7 +31,7 @@ class GPSLocationSearchComponent extends Component {
       title={
         <Highlighter
           style={{ paddingLeft: 5 }}
-          highlightStyle={{ fontWeight: "bold" }}
+          highlightStyle={{ fontWeight: 'bold' }}
           searchWords={[searchText]}
           textToHighlight={item.item.title}
         />
@@ -40,7 +40,7 @@ class GPSLocationSearchComponent extends Component {
     />
   );
   renderFetchingMessage = () => (
-    <View style={{ alignSelf: "center", flexDirection: "row" }}>
+    <View style={{ alignSelf: 'center', flexDirection: 'row' }}>
       <ActivityIndicator size="small" />
       <Text>Fetching cities nearby...</Text>
     </View>
@@ -53,14 +53,14 @@ class GPSLocationSearchComponent extends Component {
       errorString = `${message} (Code : ${code}), \nCheck your location settings and try again`;
     } else {
       errorString =
-        "Error fetching nearby cities, check your network connection and try again";
+        'Error fetching nearby cities, check your network connection and try again';
     }
     return (
       <View
         style={{
-          alignSelf: "center",
-          flexDirection: "row",
-          paddingHorizontal: 10
+          alignSelf: 'center',
+          flexDirection: 'row',
+          paddingHorizontal: 10,
         }}
       >
         <Icon name="md-alert" type="ionicon" size={20} />
@@ -83,16 +83,16 @@ class GPSLocationSearchComponent extends Component {
         {isFetching ? this.renderFetchingMessage() : null}
         <List
           containerStyle={{
-            maxHeight: "75%",
+            maxHeight: '75%',
             borderTopWidth: 0,
             paddingTop: 0,
             marginTop: 0,
-            backgroundColor: "transparent"
+            backgroundColor: 'transparent',
           }}
         >
           <FlatList
             data={result}
-            renderItem={item => this.renderRow(item, "")}
+            renderItem={item => this.renderRow(item, '')}
             keyExtractor={item => String(item.woeid)}
           />
         </List>
@@ -104,16 +104,14 @@ class GPSLocationSearchComponent extends Component {
 }
 const mapStateToProps = state => ({
   locationCoordSearch: state.locationCoordSearch,
-  gpsLocation: state.gpsLocation
+  gpsLocation: state.gpsLocation,
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       searchNearbyLocationsWithGps:
-        LocationCoordSearchActions.searchNearbyLocationsWithGps
+        LocationCoordSearchActions.searchNearbyLocationsWithGps,
     },
-    dispatch
+    dispatch,
   );
-export default connect(mapStateToProps, mapDispatchToProps)(
-  GPSLocationSearchComponent
-);
+export default connect(mapStateToProps, mapDispatchToProps)(GPSLocationSearchComponent);

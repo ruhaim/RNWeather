@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { View, FlatList } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { withNavigation } from "react-navigation";
+import React, { Component } from 'react';
+import { View, FlatList } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
-import WeatherApi from "../../Services/WeatherApi";
+import WeatherApi from '../../Services/WeatherApi';
 
-import { Text, List, ListItem, SearchBar, Button } from "react-native-elements";
-import LocationTextSearchActions from "../../Redux/Actions/LocationTextSearchActions";
+import { Text, List, ListItem, SearchBar, Button } from 'react-native-elements';
+import LocationTextSearchActions from '../../Redux/Actions/LocationTextSearchActions';
 
-import CityWeatherActions from "../../Redux/Actions/CityWeatherActions";
+import CityWeatherActions from '../../Redux/Actions/CityWeatherActions';
 
-import LocationListItemRenderer from "../LocationSearch/LocationListItemRenderer";
+import LocationListItemRenderer from '../LocationSearch/LocationListItemRenderer';
 
-import Icon from "react-native-vector-icons/Ionicons";
-import Highlighter from "react-native-highlight-words";
+import Icon from 'react-native-vector-icons/Ionicons';
+import Highlighter from 'react-native-highlight-words';
 
 class TextLocationSearchComponent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
-      locationSearch: { ...nextProps.locationSearch }
+      locationSearch: { ...nextProps.locationSearch },
     };
   }
   constructor(props) {
@@ -28,16 +28,16 @@ class TextLocationSearchComponent extends Component {
     this.state = {};
   }
 
-  onChangeText = searchText => {
+  onChangeText = (searchText) => {
     this.props.searchLocationRequest(searchText);
   };
   onInputCleared = () => {};
   renderFetchErrorMessage = () => (
     <View
       style={{
-        alignSelf: "center",
-        flexDirection: "row",
-        paddingHorizontal: 10
+        alignSelf: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
       }}
     >
       <Icon name="md-alert" type="ionicon" size={20} />
@@ -49,7 +49,9 @@ class TextLocationSearchComponent extends Component {
   );
 
   render() {
-    const { searchText, isFetching, error, result } = this.state.locationSearch;
+    const {
+      searchText, isFetching, error, result,
+    } = this.state.locationSearch;
     return (
       <View>
         <Text h2>Search a city</Text>
@@ -69,7 +71,7 @@ class TextLocationSearchComponent extends Component {
             borderTopWidth: 0,
             paddingTop: 0,
             marginTop: 0,
-            backgroundColor: "transparent"
+            backgroundColor: 'transparent',
           }}
         >
           <FlatList
@@ -91,17 +93,15 @@ class TextLocationSearchComponent extends Component {
 }
 const mapStateToProps = state => ({
   locationSearch: state.locationSearch,
-  nav: state
+  nav: state,
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       searchLocationRequest: LocationTextSearchActions.searchLocationRequest,
-      getWeatherByWoeid: CityWeatherActions.getWeatherByWoeid
+      getWeatherByWoeid: CityWeatherActions.getWeatherByWoeid,
     },
 
-    dispatch
+    dispatch,
   );
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withNavigation(TextLocationSearchComponent)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(TextLocationSearchComponent));

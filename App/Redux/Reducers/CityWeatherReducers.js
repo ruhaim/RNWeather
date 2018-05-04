@@ -1,6 +1,6 @@
-import { createReducer } from "reduxsauce";
-import Immutable from "seamless-immutable";
-import { CityWeatherTypes } from "../Actions/CityWeatherActions";
+import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import { CityWeatherTypes } from '../Actions/CityWeatherActions';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
@@ -8,7 +8,7 @@ export const INITIAL_STATE = Immutable({
   loadedCitites: [],
   apiWeatherResult: null,
   apiWeatherError: null,
-  isFetching: false
+  isFetching: false,
 });
 
 /* ------------- Reducers ------------- */
@@ -19,7 +19,7 @@ export const success = (state, { result }) =>
   state.merge({
     isFetching: false,
     apiWeatherError: null,
-    apiWeatherResult: result
+    apiWeatherResult: result,
   });
 
 export const failure = (state, { error }) =>
@@ -30,5 +30,5 @@ export const failure = (state, { error }) =>
 export const reducer = createReducer(INITIAL_STATE, {
   [CityWeatherTypes.GET_WEATHER_BY_WOEID]: request,
   [CityWeatherTypes.GET_WEATHER_BY_WOEID_SUCCESS]: success,
-  [CityWeatherTypes.GET_WEATHER_BY_WOEID_FAIL]: failure
+  [CityWeatherTypes.GET_WEATHER_BY_WOEID_FAIL]: failure,
 });

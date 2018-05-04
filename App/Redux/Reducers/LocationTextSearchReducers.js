@@ -1,13 +1,13 @@
-import { createReducer } from "reduxsauce";
-import Immutable from "seamless-immutable";
-import { LocationTextSearchTypes } from "../Actions/LocationTextSearchActions";
+import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import { LocationTextSearchTypes } from '../Actions/LocationTextSearchActions';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
   searchText: null,
-  result: require("../../Fixtures/searchResultLatLong.json"),
+  result: require('../../Fixtures/searchResultLatLong.json'),
   error: null,
-  isFetching: false
+  isFetching: false,
 });
 
 /* ------------- Reducers ------------- */
@@ -19,7 +19,7 @@ export const success = (state, { locationSearchResults }) =>
   state.merge({
     isFetching: false,
     error: null,
-    result: locationSearchResults
+    result: locationSearchResults,
   });
 
 export const failure = (state, { locationSearchError }) =>
@@ -30,5 +30,5 @@ export const failure = (state, { locationSearchError }) =>
 export const reducer = createReducer(INITIAL_STATE, {
   [LocationTextSearchTypes.SEARCH_LOCATION_REQUEST]: request,
   [LocationTextSearchTypes.SEARCH_LOCATION_SUCESS]: success,
-  [LocationTextSearchTypes.SEARCH_LOCATION_FAIL]: failure
+  [LocationTextSearchTypes.SEARCH_LOCATION_FAIL]: failure,
 });

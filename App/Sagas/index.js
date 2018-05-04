@@ -1,35 +1,35 @@
-import { takeLatest, all, throttle } from "redux-saga/effects";
-import API from "../Services/Api";
+import { takeLatest, all, throttle } from 'redux-saga/effects';
+import API from '../Services/Api';
 
-import WeatherAPI from "../Services/WeatherApi";
+import WeatherAPI from '../Services/WeatherApi';
 
-import FixtureAPI from "../Services/FixtureApi";
-import FixtureWeatherApi from "../Services/FixtureWeatherApi";
-import DebugConfig from "../Config/DebugConfig";
+import FixtureAPI from '../Services/FixtureApi';
+import FixtureWeatherApi from '../Services/FixtureWeatherApi';
+import DebugConfig from '../Config/DebugConfig';
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from "../Redux/StartupRedux";
-import { GithubTypes } from "../Redux/GithubRedux";
+import { StartupTypes } from '../Redux/StartupRedux';
+import { GithubTypes } from '../Redux/GithubRedux';
 
-import { GPSLocationTypes } from "../Redux/Actions/GPSLocationActions";
-import { LocationCoordSearchTypes } from "../Redux/Actions/LocationCoordSearchActions";
-import { LocationTextSearchTypes } from "../Redux/Actions/LocationTextSearchActions";
-import { CityWeatherTypes } from "../Redux/Actions/CityWeatherActions";
+import { GPSLocationTypes } from '../Redux/Actions/GPSLocationActions';
+import { LocationCoordSearchTypes } from '../Redux/Actions/LocationCoordSearchActions';
+import { LocationTextSearchTypes } from '../Redux/Actions/LocationTextSearchActions';
+import { CityWeatherTypes } from '../Redux/Actions/CityWeatherActions';
 
 /* ------------- Sagas ------------- */
 
-import { startup } from "./StartupSagas";
-import { getUserAvatar } from "./GithubSagas";
-import { getLocationResultForTextSearch } from "./LocationTextSearchSagas";
+import { startup } from './StartupSagas';
+import { getUserAvatar } from './GithubSagas';
+import { getLocationResultForTextSearch } from './LocationTextSearchSagas';
 
-import { getCityWeatherForWoeid } from "./CityWeatheLoadSagas";
+import { getCityWeatherForWoeid } from './CityWeatheLoadSagas';
 
 import {
   getGPSLocation,
   getLocationResultForGPSLocation,
-  searchCoordLocationRequest
-} from "./GPSLocationSagas";
+  searchCoordLocationRequest,
+} from './GPSLocationSagas';
 
 /* ------------- API ------------- */
 
@@ -54,26 +54,26 @@ export default function* root() {
     takeLatest(
       LocationCoordSearchTypes.SEARCH_COORD_LOCATION_REQUEST,
       searchCoordLocationRequest,
-      weatherApi
+      weatherApi,
     ),
 
     takeLatest(
       LocationCoordSearchTypes.SEARCH_NEARBY_LOCATIONS_WITH_GPS,
       getLocationResultForGPSLocation,
-      weatherApi
+      weatherApi,
     ),
 
     takeLatest(
       CityWeatherTypes.GET_WEATHER_BY_WOEID,
       getCityWeatherForWoeid,
-      weatherApi
+      weatherApi,
     ),
 
     throttle(
       500,
       LocationTextSearchTypes.SEARCH_LOCATION_REQUEST,
       getLocationResultForTextSearch,
-      weatherApi
-    )
+      weatherApi,
+    ),
   ]);
 }

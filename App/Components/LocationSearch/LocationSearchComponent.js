@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { View, FlatList, KeyboardAvoidingView } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import WeatherApi from "../../Services/WeatherApi";
+import WeatherApi from '../../Services/WeatherApi';
 
-import { Text, List, ListItem } from "react-native-elements";
-import GPSLocationSearchComponent from "../GPSLocationSearchComponent/GPSLocationSearchComponent";
-import Icon from "react-native-vector-icons/Ionicons";
-import Highlighter from "react-native-highlight-words";
-import TextLocationSearchComponent from "../TextLocationSearchComponent/TextLocationSearchComponent";
+import { Text, List, ListItem } from 'react-native-elements';
+import GPSLocationSearchComponent from '../GPSLocationSearchComponent/GPSLocationSearchComponent';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Highlighter from 'react-native-highlight-words';
+import TextLocationSearchComponent from '../TextLocationSearchComponent/TextLocationSearchComponent';
 
 class LocationSearchComponent extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class LocationSearchComponent extends Component {
       searchText: null,
       result: null,
       error: null,
-      fetching: false
+      fetching: false,
     };
   }
 
@@ -32,7 +32,7 @@ class LocationSearchComponent extends Component {
             borderTopWidth: 0,
             paddingTop: 0,
             marginTop: 0,
-            backgroundColor: "transparent"
+            backgroundColor: 'transparent',
           }}
         />
       </KeyboardAvoidingView>
@@ -42,6 +42,4 @@ class LocationSearchComponent extends Component {
 
 const mapStateToProps = state => ({ data: state.data });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(
-  LocationSearchComponent
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchComponent);
