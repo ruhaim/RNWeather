@@ -38,7 +38,8 @@ class GPSLocationSearchComponent extends Component {
       let { message, code } = this.props.gpsLocation.gpsError;
       errorString = `${message} (Code : ${code}), \nCheck your location settings and try again`;
     } else {
-      errorString = 'Error fetching nearby cities, check your network connection and try again';
+      errorString =
+        'Error fetching nearby cities, check your network connection and try again';
     }
     return (
       <View style={[styles.messages, styles.errorMessage]}>
@@ -76,7 +77,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      searchNearbyLocationsWithGps: LocationCoordSearchActions.searchNearbyLocationsWithGps,
+      searchNearbyLocationsWithGps:
+        LocationCoordSearchActions.searchNearbyLocationsWithGps,
     },
     dispatch,
   );

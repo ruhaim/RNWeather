@@ -11,7 +11,9 @@ export default class AppHeader extends Component {
     return (
       <ImageBackground
         style={styles.imageContainer}
-        source={{ uri: 'https://www.metaweather.com/static/img/weather/png/s.png' }}
+        source={{
+          uri: 'https://www.metaweather.com/static/img/weather/png/s.png',
+        }}
       >
         <Text h2 style={styles.headerText}>
           RN Weather
