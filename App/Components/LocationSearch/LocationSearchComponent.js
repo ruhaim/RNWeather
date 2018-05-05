@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, FlatList, KeyboardAvoidingView, Image, ImageBackground } from 'react-native';
+import {
+  View,
+  FlatList,
+  KeyboardAvoidingView,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

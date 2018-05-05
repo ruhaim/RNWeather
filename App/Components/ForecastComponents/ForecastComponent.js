@@ -24,7 +24,9 @@ export default class ForecastComponent extends Component {
           <ForecastTodayItem data={weatherToday} />
 
           <Card containerStyle={{ padding: 0 }}>
-            {weatherNextFewDays.map((u, i) => <ForecastDayItem data={u} key={u.applicable_date} />)}
+            {weatherNextFewDays.map((u, i) => (
+              <ForecastDayItem data={u} key={u.applicable_date} />
+            ))}
           </Card>
         </View>
       );

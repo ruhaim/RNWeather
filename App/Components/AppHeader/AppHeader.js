@@ -15,7 +15,9 @@ export default class AppHeader extends Component {
           alignContent: 'center',
           justifyContent: 'flex-end',
         }}
-        source={{ uri: 'https://www.metaweather.com/static/img/weather/png/s.png' }}
+        source={{
+          uri: 'https://www.metaweather.com/static/img/weather/png/s.png',
+        }}
       >
         <Text
           h2
