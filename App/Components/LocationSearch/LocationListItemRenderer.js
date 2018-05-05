@@ -17,7 +17,7 @@ class LocationListItemRenderer extends Component {
     };
   }
   onPress = () => {
-    this.props.getWeatherByWoeid(this.props.item);
+    // this.props.getWeatherByWoeid(this.props.item);
     this.props.navigation.navigate('WeatherDetailScreen', {
       item: this.props.item,
     });

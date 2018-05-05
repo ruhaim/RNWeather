@@ -1,11 +1,12 @@
 import { createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+import _ from 'lodash';
 import { CityWeatherTypes } from '../Actions/CityWeatherActions';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
   selectedCity: null,
-  loadedCitites: [],
+  loadedCitites: {},
   apiWeatherResult: null,
   apiWeatherError: null,
   isFetching: false,
@@ -13,14 +14,20 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-export const request = state => state.merge({ isFetching: true });
+export const request = (state, { selectedCity }) =>
+  state.merge({ isFetching: true, selectedCity });
 
-export const success = (state, { result }) =>
-  state.merge({
+export const success = (state, { result }) => {
+  const woeidKey = `woeid_${result.woeid}`;
+  return state.merge({
+    apiWeatherResult: result,
     isFetching: false,
     apiWeatherError: null,
-    apiWeatherResult: result,
+    loadedCitites: Object.assign({}, state.loadedCitites, {
+      [woeidKey]: result,
+    }),
   });
+};
 
 export const failure = (state, { error }) =>
   state.merge({ isFetching: false, apiWeatherError: error });

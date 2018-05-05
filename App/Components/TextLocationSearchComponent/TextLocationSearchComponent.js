@@ -80,7 +80,6 @@ class TextLocationSearchComponent extends Component {
               <LocationListItemRenderer
                 item={item}
                 searchText={searchText}
-                getWeatherByWoeid={this.props.getWeatherByWoeid}
                 navigation={this.props.navigation}
               />
             )}
@@ -93,7 +92,6 @@ class TextLocationSearchComponent extends Component {
 }
 const mapStateToProps = state => ({
   locationSearch: state.locationSearch,
-  nav: state,
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

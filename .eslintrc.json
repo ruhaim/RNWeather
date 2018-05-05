@@ -27,6 +27,7 @@
     "prefer-destructuring": "warn",
     "no-unused-vars": "warn",
     "no-underscore-dangle": "off",
+    "camelcase": "off",
     "global-require": "off",
     "no-plusplus": [0],
     "max-len": ["warn", { "code": 100 }],

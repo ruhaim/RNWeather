@@ -11,6 +11,7 @@ export const reducers = combineReducers({
   locationCoordSearch: require('./Reducers/LocationCoordSearchReducers')
     .reducer,
   gpsLocation: require('./Reducers/GPSLocationReducers').reducer,
+  cityWeather: require('./Reducers/CityWeatherReducers').reducer,
 });
 
 export default () => {

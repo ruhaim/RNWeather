@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, View, FlatList } from 'react-native';
-
+import { withNavigation } from 'react-navigation';
 import { Text, List, ListItem, SearchBar, Button } from 'react-native-elements';
 import GPSLocatorButton from './GPSLocatorButton/GPSLocatorButton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import GPSLocationActions from '../../Redux/Actions/GPSLocationActions';
 import LocationCoordSearchActions from '../../Redux/Actions/LocationCoordSearchActions';
+import LocationListItemRenderer from '../LocationSearch/LocationListItemRenderer';
 
 class GPSLocationSearchComponent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -92,7 +93,14 @@ class GPSLocationSearchComponent extends Component {
         >
           <FlatList
             data={result}
-            renderItem={item => this.renderRow(item, '')}
+            renderItem={item => (
+              <LocationListItemRenderer
+                item={item}
+                searchText=""
+                getWeatherByWoeid={this.props.getWeatherByWoeid}
+                navigation={this.props.navigation}
+              />
+            )}
             keyExtractor={item => String(item.woeid)}
           />
         </List>
@@ -114,4 +122,4 @@ const mapDispatchToProps = dispatch =>
     },
     dispatch,
   );
-export default connect(mapStateToProps, mapDispatchToProps)(GPSLocationSearchComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(GPSLocationSearchComponent));
