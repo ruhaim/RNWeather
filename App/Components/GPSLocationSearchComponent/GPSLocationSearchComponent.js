@@ -53,8 +53,7 @@ class GPSLocationSearchComponent extends Component {
       let { message, code } = this.props.gpsLocation.gpsError;
       errorString = `${message} (Code : ${code}), \nCheck your location settings and try again`;
     } else {
-      errorString =
-        'Error fetching nearby cities, check your network connection and try again';
+      errorString = 'Error fetching nearby cities, check your network connection and try again';
     }
     return (
       <View
@@ -78,33 +77,14 @@ class GPSLocationSearchComponent extends Component {
         <GPSLocatorButton
           isLoading={isFetching}
           onPress={() => {
+            if (this.props.onSearchInit) {
+              this.props.onSearchInit();
+            }
+
             this.props.searchNearbyLocationsWithGps();
           }}
         />
         {isFetching ? this.renderFetchingMessage() : null}
-        <List
-          containerStyle={{
-            maxHeight: '75%',
-            borderTopWidth: 0,
-            paddingTop: 0,
-            marginTop: 0,
-            backgroundColor: 'transparent',
-          }}
-        >
-          <FlatList
-            data={result}
-            renderItem={item => (
-              <LocationListItemRenderer
-                item={item}
-                searchText=""
-                getWeatherByWoeid={this.props.getWeatherByWoeid}
-                navigation={this.props.navigation}
-              />
-            )}
-            keyExtractor={item => String(item.woeid)}
-          />
-        </List>
-
         {error ? this.renderFetchErrorMessage() : null}
       </View>
     );
@@ -117,8 +97,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      searchNearbyLocationsWithGps:
-        LocationCoordSearchActions.searchNearbyLocationsWithGps,
+      searchNearbyLocationsWithGps: LocationCoordSearchActions.searchNearbyLocationsWithGps,
     },
     dispatch,
   );

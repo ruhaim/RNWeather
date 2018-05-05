@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ListItem } from 'react-native-elements';
-
+import { TouchableNativeFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Highlighter from 'react-native-highlight-words';
 
@@ -26,18 +26,19 @@ class LocationListItemRenderer extends Component {
   render() {
     const { item, searchText } = this.props;
     return (
-      <ListItem
-        onPress={this.props.onPress || this.onPress}
-        title={
-          <Highlighter
-            style={{ paddingLeft: 5 }}
-            highlightStyle={{ fontWeight: 'bold' }}
-            searchWords={[searchText]}
-            textToHighlight={item.item.title}
-          />
-        }
-        avatar={<Icon name="md-pin" size={25} />}
-      />
+      <TouchableNativeFeedback onPress={this.props.onPress || this.onPress}>
+        <ListItem
+          title={
+            <Highlighter
+              style={{ paddingLeft: 5 }}
+              highlightStyle={{ fontWeight: 'bold' }}
+              searchWords={[searchText]}
+              textToHighlight={item.item.title}
+            />
+          }
+          avatar={<Icon name="md-pin" size={25} />}
+        />
+      </TouchableNativeFeedback>
     );
   }
 }

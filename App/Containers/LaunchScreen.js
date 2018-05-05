@@ -4,10 +4,6 @@ import LocationSearchComponent from '../../App/Components/LocationSearch/Locatio
 import styles from './Styles/LaunchScreenStyles';
 
 export default class LaunchScreen extends Component {
-  gotoWeatherDetailsView = (item) => {
-    console.log('item', item);
-  };
-
   render() {
     return (
       <View style={styles.container}>
