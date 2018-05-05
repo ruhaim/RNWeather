@@ -1,7 +1,17 @@
 #  RNWeather
 I have build up a basic weather app that calls the https://www.metaweather.com/ api. The source code for the project is here.
-
 I used the ignite saga boilerplate to start off the project. It comes with the industry best practices baked in place.
+
+
+![alt text](https://i.imgur.com/Hc2J0wr.png)
+
+![alt text](https://i.imgur.com/BZhs727.png)
+
+![alt text](https://i.imgur.com/V17EKYc.png)
+
+![alt text](https://i.imgur.com/Z3RyYVy.png)
+
+![alt text](https://i.imgur.com/pW0HsUN.png)
 
 Few notable items are 
 ### 1.ESLining and prettier has been incorporated for auto code formatting 
