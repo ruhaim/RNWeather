@@ -1,67 +1,34 @@
 #  RNWeather
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+I have build up a basic weather app that calls the https://www.metaweather.com/ api. The source code for the project is here.
 
-* Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
+I used the ignite saga boilerplate to start off the project. It comes with the industry best practices baked in place.
 
-## :arrow_up: How to Setup
+Few notable items are 
+### 1.ESLining and prettier has been incorporated for auto code formatting 
+### 2.Husky has been used to incorporate the eslinting checks at commit time
+### 3.React Navigation is used for managing screens
+### 4.React Native Elements used as a view component library
+### ​5.Redux and React-redux has been used for Message passing
+### 6.For async message passing Redux-saga has been used over thunk as middleware
+### 7. Apisauce has been used to define API end points
+### 8. A global Config is in place to alter config files
+### 9. test cases for testing redux, saga and api has been written with jest. All tests pass right now
+### 10. Reactotron integration is in place for network monitoring 
+### 11. A nearby city finder based on GPS is also in place
+### 12. All error and loading prompts and displayed to the user in nonobstructing way
+### 13. Minimal styling has been used, but when ever used styles are created off reacts StyleSheet object
+### 14. In addition there are global styling definitions also in place
+### 15. Components and code are structured, named and written in a self documenting way, so minimal comments are used
+### 16. App works both on portrait and landscape screens
+### 17. App can be further extended with data persistence,notifications and other mobile specific features.
+### 18. Reduxsauce has been used to define redux specific functions in a less verbose way
+### 19. The app was primarily tested on Android device and emulator, it cannot be guaranteed that the same app would compile for a iOS ipa.
 
-**Step 1:** git clone this repo:
-
-**Step 2:** cd to the cloned repo:
-
-**Step 3:** Install the Application with `yarn` or `npm i`
-
-
-## :arrow_forward: How to Run App
-
-1. cd to the repo
-2. Run Build for either OS
-  * for iOS
-    * run `react-native run-ios`
-  * for Android
-    * Run Genymotion
-    * run `react-native run-android`
-
-## :no_entry_sign: Standard Compliant
-
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-This project adheres to Standard.  Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
-
-**To Lint on Commit**
-
-This is implemented using [husky](https://github.com/typicode/husky). There is no additional setup needed.
-
-**Bypass Lint**
-
-If you have to bypass lint for a special commit that you will come back and clean (pushing something to a branch etc.) then you can bypass git hooks with adding `--no-verify` to your commit command.
-
-**Understanding Linting Errors**
-
-The linting rules are from JS Standard and React-Standard.  [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
-
-## :closed_lock_with_key: Secrets
-
-This project uses [react-native-config](https://github.com/luggit/react-native-config) to expose config variables to your javascript code in React Native. You can store API keys
-and other sensitive information in a `.env` file:
-
-```
-API_URL=https://myapi.com
-GOOGLE_MAPS_API_KEY=abcdefgh
-```
-
-and access them from React Native like so:
-
-```
-import Secrets from 'react-native-config'
-
-Secrets.API_URL  // 'https://myapi.com'
-Secrets.GOOGLE_MAPS_API_KEY  // 'abcdefgh'
-```
-
-The `.env` file is ignored by git keeping those secrets out of your repo.
-
-### Get started:
-1. Copy .env.example to .env
-2. Add your config variables
-3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
-4. Done!
+▶️ How to Run App
+cd to the repo
+Run Build for either OS
+for iOS
+run react-native run-ios
+for Android
+Run Genymotion
+run react-native run-android
