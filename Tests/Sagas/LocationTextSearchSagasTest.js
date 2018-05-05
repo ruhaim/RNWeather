@@ -32,5 +32,7 @@ test('failure path', () => {
   step();
   // Second step failed response
   let { problem, status } = response;
-  expect(step(response)).toEqual(put(LocationTextSearchActions.searchLocationFail({ error: { problem, status } })));
+  expect(step(response)).toEqual(put(LocationTextSearchActions.searchLocationFail({
+    error: { problem, status },
+  })));
 });

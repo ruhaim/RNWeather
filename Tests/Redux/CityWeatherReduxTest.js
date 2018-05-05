@@ -1,5 +1,8 @@
 import Actions from '../../App/Redux/Actions/CityWeatherActions';
-import { reducer, INITIAL_STATE } from '../../App/Redux/Reducers/CityWeatherReducers';
+import {
+  reducer,
+  INITIAL_STATE,
+} from '../../App/Redux/Reducers/CityWeatherReducers';
 
 test('request', () => {
   const selectedCity = { woeid: 1132447, title: 'Busan' };
@@ -12,7 +15,10 @@ test('request', () => {
 
 test('success', () => {
   const result = { consolidated_weather: [], time: '', woeid: 1132447 };
-  const state = reducer(INITIAL_STATE, Actions.getWeatherByWoeidSuccess(result));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.getWeatherByWoeidSuccess(result),
+  );
 
   expect(state.isFetching).toBe(false);
   expect(state.apiWeatherResult).toEqual(result);

@@ -1,5 +1,8 @@
 import Actions from '../../App/Redux/Actions/LocationCoordSearchActions';
-import { reducer, INITIAL_STATE } from '../../App/Redux/Reducers/LocationCoordSearchReducers';
+import {
+  reducer,
+  INITIAL_STATE,
+} from '../../App/Redux/Reducers/LocationCoordSearchReducers';
 
 test('gpsRequest', () => {
   const state = reducer(INITIAL_STATE, Actions.searchNearbyLocationsWithGps());
@@ -11,7 +14,10 @@ test('gpsRequest', () => {
 test('request', () => {
   const coords = { lattitue: '12.99', longitude: '334.55' };
 
-  const state = reducer(INITIAL_STATE, Actions.searchCoordLocationRequest(coords));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.searchCoordLocationRequest(coords),
+  );
 
   expect(state.isFetching).toBe(true);
   expect(state.coords).toEqual(coords);
@@ -20,7 +26,10 @@ test('request', () => {
 
 test('success', () => {
   const locationSearchResults = [{ woeid: 43534 }, { woeid: 353534 }];
-  const state = reducer(INITIAL_STATE, Actions.searchCoordLocationSucess(locationSearchResults));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.searchCoordLocationSucess(locationSearchResults),
+  );
 
   expect(state.isFetching).toBe(false);
   expect(state.result).toEqual(locationSearchResults);
@@ -29,7 +38,10 @@ test('success', () => {
 
 test('failure', () => {
   const err_obj = { code: 403, message: 'kk' };
-  const state = reducer(INITIAL_STATE, Actions.searchCoordLocationFail(err_obj));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.searchCoordLocationFail(err_obj),
+  );
 
   expect(state.isFetching).toBe(false);
   expect(state.error).toEqual(err_obj);

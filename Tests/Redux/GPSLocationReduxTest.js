@@ -1,5 +1,8 @@
 import Actions from '../../App/Redux/Actions/GPSLocationActions';
-import { reducer, INITIAL_STATE } from '../../App/Redux/Reducers/GPSLocationReducers';
+import {
+  reducer,
+  INITIAL_STATE,
+} from '../../App/Redux/Reducers/GPSLocationReducers';
 
 test('request', () => {
   const state = reducer(INITIAL_STATE, Actions.getGpsLocation());

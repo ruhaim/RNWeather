@@ -1,9 +1,15 @@
 import Actions from '../../App/Redux/Actions/LocationTextSearchActions';
-import { reducer, INITIAL_STATE } from '../../App/Redux/Reducers/LocationTextSearchReducers';
+import {
+  reducer,
+  INITIAL_STATE,
+} from '../../App/Redux/Reducers/LocationTextSearchReducers';
 
 test('request', () => {
   const searchText = 'lon';
-  const state = reducer(INITIAL_STATE, Actions.searchLocationRequest(searchText));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.searchLocationRequest(searchText),
+  );
 
   expect(state.isFetching).toBe(true);
   expect(state.searchText).toEqual(searchText);
@@ -12,7 +18,10 @@ test('request', () => {
 
 test('success', () => {
   const locationSearchResults = [{ woeid: 43534 }, { woeid: 353534 }];
-  const state = reducer(INITIAL_STATE, Actions.searchLocationSucess(locationSearchResults));
+  const state = reducer(
+    INITIAL_STATE,
+    Actions.searchLocationSucess(locationSearchResults),
+  );
 
   expect(state.isFetching).toBe(false);
   expect(state.result).toEqual(locationSearchResults);

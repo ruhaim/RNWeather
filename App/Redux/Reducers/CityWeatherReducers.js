@@ -14,7 +14,8 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-export const request = (state, { selectedCity }) => state.merge({ isFetching: true, selectedCity });
+export const request = (state, { selectedCity }) =>
+  state.merge({ isFetching: true, selectedCity });
 
 export const success = (state, { result }) => {
   const woeidKey = `woeid_${result.woeid}`;
