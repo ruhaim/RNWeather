@@ -16,10 +16,7 @@ export const request = state => state.merge({ isFetching: true });
 export const success = (state, { gpsResult }) =>
   state.merge({ isFetching: false, gpsError: null, gpsResult });
 
-export const failure = (state, { gpsError }) => {
-  console.log('error', gpsError);
-  return state.merge({ isFetching: false, gpsError });
-};
+export const failure = (state, { gpsError }) => state.merge({ isFetching: false, gpsError });
 
 /* ------------- Hookup Reducers To Types ------------- */
 
