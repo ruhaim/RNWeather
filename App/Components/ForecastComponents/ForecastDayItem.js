@@ -23,8 +23,9 @@ export default class ForecastDayItem extends Component {
     return (
       <ListItem
         key={applicable_date}
-        roundAvatar
+        hideChevron
         title={applicable_date}
+        rightTitle={`${String(the_temp).substr(0, 4)}°C`}
         avatar={{
           uri: `https://www.metaweather.com/static/img/weather/png/64/${weather_state_abbr}.png`,
         }}

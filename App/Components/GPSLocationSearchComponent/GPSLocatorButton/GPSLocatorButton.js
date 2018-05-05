@@ -4,14 +4,9 @@ import { View, FlatList } from 'react-native';
 import { Text, List, ListItem, SearchBar, Button } from 'react-native-elements';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import styles from './styles';
 
 export default class GPSLocatorButton extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.isLoading !== prevState.isLoading) {
-      return { isLoading: nextProps.isLoading };
-    }
-    return {};
-  }
   constructor(props) {
     super(props);
 
@@ -21,9 +16,7 @@ export default class GPSLocatorButton extends Component {
   }
   render() {
     return (
-      <View
-        style={{ alignItems: 'center', paddingTop: 10, paddingHorizontal: 10 }}
-      >
+      <View style={styles.container}>
         <Text>Or</Text>
         <Button
           disabled={this.state.isLoading}

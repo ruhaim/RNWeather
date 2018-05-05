@@ -16,6 +16,7 @@ import GPSLocationSearchComponent from '../GPSLocationSearchComponent/GPSLocatio
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Highlighter from 'react-native-highlight-words';
+import styles from '../GPSLocationSearchComponent/styles';
 
 class TextLocationSearchComponent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -34,21 +35,11 @@ class TextLocationSearchComponent extends Component {
     this.setState({ searchMode: 'text' });
     this.props.searchLocationRequest(searchText);
   };
-  onInputCleared = () => {};
 
   renderFetchErrorMessage = () => (
-    <View
-      style={{
-        alignSelf: 'center',
-        flexDirection: 'row',
-        paddingHorizontal: 10,
-      }}
-    >
+    <View style={[styles.messages, styles.errorMessage]}>
       <Icon name="md-alert" type="ionicon" size={20} />
-      <Text>
-        Error fetching matching entries, check your network connection and try
-        again
-      </Text>
+      <Text>Error fetching matching entries, check your network connection and try again</Text>
     </View>
   );
 
@@ -70,20 +61,11 @@ class TextLocationSearchComponent extends Component {
           clearIcon={searchText ? true : null}
           showLoadingIcon={isFetching}
           onChangeText={this.onChangeText}
-          onClearText={this.onInputCleared}
           placeholder="Try London or Chennai"
           blurOnSubmit
         />
         {error ? this.renderFetchErrorMessage() : null}
-        <List
-          containerStyle={{
-            borderTopWidth: 0,
-            paddingTop: 0,
-            marginTop: 0,
-            maxHeight: '70%',
-            backgroundColor: 'transparent',
-          }}
-        >
+        <List containerStyle={[styles.listContainerStyle, { marginTop: 0 }]}>
           <FlatList
             data={result}
             ListHeaderComponent={
@@ -91,12 +73,7 @@ class TextLocationSearchComponent extends Component {
                 onSearchInit={() => {
                   this.setState({ searchMode: 'gps' });
                 }}
-                style={{
-                  borderTopWidth: 0,
-                  paddingTop: 0,
-                  marginTop: 0,
-                  backgroundColor: 'transparent',
-                }}
+                style={styles.gpsComponentSearchStyle}
               />
             }
             renderItem={item => (

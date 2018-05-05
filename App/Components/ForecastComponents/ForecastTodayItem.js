@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Text, Button, Card, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
+import styles from './styles';
 
 export default class ForecastComponent extends Component {
   static defaultProps = { show: true };
@@ -28,8 +29,8 @@ export default class ForecastComponent extends Component {
         }}
         imageProps={{ resizeMode: 'contain' }}
       >
-        <View style={{ flexDirection: 'row', paddingRight: 4 }}>
-          <View style={{ flexDirection: 'row', paddingRight: 4 }}>
+        <View style={styles.twoColContainer}>
+          <View style={styles.twoColContainer}>
             <Icon name="ios-thermometer-outline" size={50} />
             <View>
               <Text>Max: {String(max_temp).substr(0, 4)}°C</Text>
@@ -37,7 +38,7 @@ export default class ForecastComponent extends Component {
               <Text>Min: {String(min_temp).substr(0, 4)}°C</Text>
             </View>
           </View>
-          <View style={{ flexDirection: 'row', paddingRight: 4 }}>
+          <View style={styles.twoColContainer}>
             <Icon
               style={{
                 transform: [

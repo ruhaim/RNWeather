@@ -5,6 +5,8 @@ import { TouchableNativeFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Highlighter from 'react-native-highlight-words';
 
+import styles from './styles';
+
 class LocationListItemRenderer extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,6 @@ class LocationListItemRenderer extends Component {
     };
   }
   onPress = () => {
-    // this.props.getWeatherByWoeid(this.props.item);
     this.props.navigation.navigate('WeatherDetailScreen', {
       item: this.props.item,
     });
@@ -31,7 +32,7 @@ class LocationListItemRenderer extends Component {
           title={
             <Highlighter
               style={{ paddingLeft: 5 }}
-              highlightStyle={{ fontWeight: 'bold' }}
+              highlightStyle={styles.searchHighlightStyle}
               searchWords={[searchText]}
               textToHighlight={item.item.title}
             />

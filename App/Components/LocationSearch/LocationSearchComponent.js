@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import {
-  View,
-  FlatList,
-  KeyboardAvoidingView,
-  Image,
-  ImageBackground,
-} from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, Image, ImageBackground } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import WeatherApi from '../../Services/WeatherApi';
 
 import { Text, List, ListItem, Avatar } from 'react-native-elements';
-import GPSLocationSearchComponent from '../GPSLocationSearchComponent/GPSLocationSearchComponent';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Highlighter from 'react-native-highlight-words';
 import TextLocationSearchComponent from '../TextLocationSearchComponent/TextLocationSearchComponent';
 import AppHeader from '../AppHeader/AppHeader';
+
+import styles from './styles';
 
 class LocationSearchComponent extends Component {
   constructor(props) {
